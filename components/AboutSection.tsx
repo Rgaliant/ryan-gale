@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const BIO_TEXT = `Engineering leader who bridges product and code.
 I understand the full stack — from database schemas
@@ -35,27 +34,9 @@ const SKILL_CATEGORIES = [
 ];
 
 export default function AboutSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const [displayedText, setDisplayedText] = useState("");
-  const [startedTyping, setStartedTyping] = useState(false);
-
-  useEffect(() => {
-    if (!isInView || startedTyping) return;
-    setStartedTyping(true);
-    let i = 0;
-    const timer = setInterval(() => {
-      i++;
-      setDisplayedText(BIO_TEXT.slice(0, i));
-      if (i >= BIO_TEXT.length) clearInterval(timer);
-    }, 18);
-    return () => clearInterval(timer);
-  }, [isInView, startedTyping]);
-
   return (
     <section
       id="about"
-      ref={ref}
       style={{
         padding: "clamp(5rem, 9vw, 9rem) clamp(1.5rem, 4vw, 3rem)",
         maxWidth: "1140px",
@@ -111,21 +92,21 @@ export default function AboutSection() {
             </span>
           </motion.h2>
 
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             style={{
               color: "var(--green-dim)",
               lineHeight: "1.95",
               fontSize: "clamp(0.78rem, 1.5vw, 0.88rem)",
               fontFamily: "var(--font-jetbrains), monospace",
               whiteSpace: "pre-line",
-              minHeight: "12rem",
             }}
           >
-            {displayedText}
-            {displayedText.length < BIO_TEXT.length && (
-              <span className="cursor-blink" />
-            )}
-          </div>
+            {BIO_TEXT}
+          </motion.div>
         </div>
 
         {/* Skills grid column */}
