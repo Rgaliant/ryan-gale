@@ -10,7 +10,7 @@ const WORK = [
     url: "https://fluid.app",
     role: "Senior Software Engineer",
     subtitle: "Team Lead, Infrastructure",
-    period: "Nov 2024 — Present",
+    period: "Nov 2024 — Mar 2026",
     hash: "c4a2e1f",
     description:
       "Team Lead for the infrastructure squad. Driving full-stack development of core engineering tools — webhooks, third-party integrations, AI features, a website builder, and digital asset management. Leading product engineering initiatives for customer-centric projects end-to-end.",
@@ -134,11 +134,8 @@ export default function WorkSection() {
                   width: 11,
                   height: 11,
                   borderRadius: "50%",
-                  background: i === 0 ? "var(--amber)" : "var(--green)",
-                  boxShadow:
-                    i === 0
-                      ? "0 0 10px var(--amber-glow)"
-                      : "0 0 10px var(--green-glow)",
+                  background: "var(--green)",
+                  boxShadow: "0 0 10px var(--green-glow)",
                   border: "2px solid var(--bg)",
                   animation: "glowPulse 2.5s ease-in-out infinite",
                 }}
@@ -215,29 +212,6 @@ export default function WorkSection() {
                     >
                       commit {job.hash}
                     </span>
-                    {i === 0 && (
-                      <span
-                        style={{
-                          color: "var(--amber)",
-                          fontSize: "0.62rem",
-                          letterSpacing: "0.1em",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.3rem",
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: 6,
-                            height: 6,
-                            borderRadius: "50%",
-                            background: "var(--amber)",
-                            animation: "glowPulse 1.8s ease-in-out infinite",
-                          }}
-                        />
-                        current
-                      </span>
-                    )}
                   </div>
                   <span
                     style={{
