@@ -105,7 +105,7 @@ export default function HeroSection() {
             textTransform: "lowercase",
           }}
         >
-          full-stack engineer · product builder
+          senior engineer · ai-native builder
         </motion.div>
 
         {/* Terminal prompt line */}
@@ -123,7 +123,7 @@ export default function HeroSection() {
           <span style={{ color: "var(--amber)" }}>~/ryan-gale</span>
           <span style={{ color: "var(--muted)" }}>
             {" "}
-            $ engineer --years 6+ --stack rails+ts --role team-lead
+            $ engineer --years 7+ --stack ts+rails --focus ai-native
           </span>
           <span className="cursor-blink" style={{ marginLeft: "2px" }} />
         </motion.div>

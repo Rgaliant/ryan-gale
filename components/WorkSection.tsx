@@ -9,12 +9,12 @@ const WORK = [
     company: "Fluid",
     url: "https://fluid.app",
     role: "Senior Software Engineer",
-    subtitle: "Team Lead, Infrastructure",
+    subtitle: "",
     period: "Nov 2024 — Mar 2026",
     hash: "c4a2e1f",
     description:
-      "Team Lead for the infrastructure squad. Driving full-stack development of core engineering tools — webhooks, third-party integrations, AI features, a website builder, and digital asset management. Leading product engineering initiatives for customer-centric projects end-to-end.",
-    tags: ["TypeScript", "Node.js", "AI", "Webhooks", "Integrations", "Full-Stack"],
+      "Built a production RAG pipeline using LangChain + pgvector for contextualized AI conversations. Designed a Rails service logic layer extracting business logic from controllers. Redesigned the webhook system from ActiveRecord callbacks to an explicit resource pattern. Built a Digital Asset Manager SDK providing a unified interface for asset ingestion and retrieval. Authored structured context files (CLAUDE.md) to improve reliability in agentic coding workflows.",
+    tags: ["TypeScript", "Ruby on Rails", "LangChain", "RAG", "pgvector", "Node.js", "Webhooks"],
   },
   {
     id: "direct",

@@ -2,34 +2,36 @@
 
 import { motion } from "framer-motion";
 
-const BIO_TEXT = `Engineering leader who bridges product and code.
-I understand the full stack — from database schemas
-to customer journeys — and use that context to ship
-faster and make smarter decisions.
+const BIO_TEXT = `Senior software engineer with 7 years of full-stack
+experience, now focused on AI-native product
+development.
 
-Most recently Team Lead at Fluid, building tools at
-the intersection of AI, integrations, and developer
-experience. Now seeking my next challenge.
-
-6+ years at product-driven startups. I've worn the
-hats: senior engineer, tech lead, and product owner.`;
+Built production RAG systems, vector search pipelines,
+and agentic tooling at Fluid.app. Deep background in
+TypeScript/React and API architecture; experienced
+leading engineering teams from 0→1 in startup
+environments.`;
 
 const SKILL_CATEGORIES = [
   {
-    label: "BACKEND",
-    skills: ["Ruby on Rails", "Node.js", "REST APIs", "PostgreSQL"],
+    label: "AI/ML",
+    skills: ["LangChain", "RAG", "pgvector", "OpenAI / Anthropic APIs", "Embeddings", "Agentic Workflows"],
+  },
+  {
+    label: "LANGUAGES",
+    skills: ["TypeScript", "JavaScript", "Ruby", "Python"],
   },
   {
     label: "FRONTEND",
-    skills: ["React", "Next.js", "TypeScript", "JavaScript"],
+    skills: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    label: "TOOLING",
-    skills: ["AWS", "Git", "Webhooks", "AI / LLMs"],
+    label: "BACKEND",
+    skills: ["Node.js", "Ruby on Rails", "REST APIs", "tRPC"],
   },
   {
-    label: "PRACTICES",
-    skills: ["Product Discovery", "A/B Testing", "Tech Leadership", "Agile"],
+    label: "INFRA",
+    skills: ["PostgreSQL", "Cloudflare", "AWS", "GCP", "Docker"],
   },
 ];
 
