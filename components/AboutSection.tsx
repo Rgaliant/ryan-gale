@@ -3,24 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const BIO_TEXT = `I build products that live at the intersection of
-clean engineering and intentional design.
+const BIO_TEXT = `Engineering leader who bridges product and code.
+I understand the full stack — from database schemas
+to customer journeys — and use that context to ship
+faster and make smarter decisions.
 
-Currently focused on tools that help people do
-more meaningful work — faster, smarter, better.
+Currently Team Lead at Fluid, building infrastructure
+tools at the intersection of AI, integrations, and
+developer experience.
 
-5+ years shipping across startups and products
-that users actually love.`;
+6+ years at product-driven startups. I've worn the
+hats: senior engineer, tech lead, and product owner.`;
 
 const SKILLS = [
-  { name: "TypeScript", pid: 1001, cpu: 94, status: "running" },
-  { name: "React / Next.js", pid: 1002, cpu: 90, status: "running" },
-  { name: "Node.js", pid: 1003, cpu: 78, status: "running" },
-  { name: "Design Systems", pid: 1004, cpu: 86, status: "running" },
-  { name: "PostgreSQL", pid: 1005, cpu: 70, status: "sleeping" },
-  { name: "Python", pid: 1006, cpu: 62, status: "sleeping" },
-  { name: "REST / GraphQL", pid: 1007, cpu: 76, status: "running" },
-  { name: "AWS / DevOps", pid: 1008, cpu: 58, status: "sleeping" },
+  { name: "Ruby on Rails", pid: 1001, cpu: 95, status: "running" },
+  { name: "TypeScript", pid: 1002, cpu: 90, status: "running" },
+  { name: "React / Next.js", pid: 1003, cpu: 88, status: "running" },
+  { name: "REST API Design", pid: 1004, cpu: 92, status: "running" },
+  { name: "AI / Integrations", pid: 1005, cpu: 84, status: "running" },
+  { name: "Product Thinking", pid: 1006, cpu: 91, status: "running" },
+  { name: "PostgreSQL / SQL", pid: 1007, cpu: 78, status: "sleeping" },
+  { name: "Team Leadership", pid: 1008, cpu: 86, status: "running" },
 ];
 
 function ProcessBar({

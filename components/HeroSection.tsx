@@ -123,7 +123,7 @@ export default function HeroSection() {
           <span style={{ color: "var(--amber)" }}>~/ryan-gale</span>
           <span style={{ color: "var(--muted)" }}>
             {" "}
-            $ engineer --years 5+ --stack fullstack
+            $ engineer --years 6+ --stack rails+ts --role team-lead
           </span>
           <span className="cursor-blink" style={{ marginLeft: "2px" }} />
         </motion.div>

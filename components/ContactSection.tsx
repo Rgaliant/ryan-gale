@@ -343,7 +343,9 @@ export default function ContactSection() {
           letterSpacing: "0.08em",
         }}
       >
-        <span>ryan_gale.portfolio — built with Next.js + TypeScript</span>
+        <span>
+          ryanwfgale@gmail.com · Salt Lake City, UT · github.com/rgaliant
+        </span>
         <span style={{ opacity: 0.6 }}>© {new Date().getFullYear()} Ryan Gale</span>
       </motion.div>
     </section>

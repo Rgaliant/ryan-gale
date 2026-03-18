@@ -4,28 +4,43 @@ import { motion } from "framer-motion";
 
 const WORK = [
   {
-    id: "direct",
-    label: "DIRECT",
-    company: "Direct",
-    url: "https://directsoftware.com",
-    role: "Software Engineer",
-    period: "2022 — Present",
-    hash: "a3f9c2b",
-    description:
-      "Building full-stack features for a property management and vacation rental platform. Led development of core booking flows, owner statement systems, and internal tooling that scaled to thousands of properties across multiple markets.",
-    tags: ["TypeScript", "React", "Node.js", "PostgreSQL", "AWS"],
-  },
-  {
     id: "fluid",
     label: "FLUID",
     company: "Fluid",
     url: "https://fluid.app",
-    role: "Software Engineer",
-    period: "2020 — 2022",
-    hash: "b7e1d4a",
+    role: "Senior Software Engineer",
+    subtitle: "Team Lead, Infrastructure",
+    period: "Nov 2024 — Present",
+    hash: "c4a2e1f",
     description:
-      "Contributed to a collaborative finance platform. Focused on real-time data sync, performance optimization across large datasets, and building a shared component library that unified the product's visual language.",
-    tags: ["React", "TypeScript", "GraphQL", "AWS", "Design Systems"],
+      "Team Lead for the infrastructure squad. Driving full-stack development of core engineering tools — webhooks, third-party integrations, AI features, a website builder, and digital asset management. Leading product engineering initiatives for customer-centric projects end-to-end.",
+    tags: ["TypeScript", "Node.js", "AI", "Webhooks", "Integrations", "Full-Stack"],
+  },
+  {
+    id: "direct",
+    label: "DIRECT",
+    company: "Direct Software",
+    url: "https://directsoftware.com",
+    role: "Software Development Team Lead",
+    subtitle: "Full-Stack",
+    period: "Aug 2019 — Nov 2024",
+    hash: "a3f9c2b",
+    description:
+      "Engineering leader in a startup environment across 5+ years. Architected and built within a monolithic Rails application — back-end business logic, REST API design, and front-end UI. Contributed to high-level technical strategy and helped guide the company through key architectural decisions as it scaled.",
+    tags: ["Ruby on Rails", "REST APIs", "React", "PostgreSQL", "Tech Lead"],
+  },
+  {
+    id: "icentris",
+    label: "ICENTRIS",
+    company: "iCentris Inc",
+    url: "https://icentris.com",
+    role: "Ruby on Rails UI Developer",
+    subtitle: "",
+    period: "May 2019 — Aug 2019",
+    hash: "e8d3b7c",
+    description:
+      "Partnered with large network marketing companies to redesign and improve UI/UX for conversion and accessibility. Scaled front-end components using HAML and Slim templates. Ran multivariate and A/B experiments via ABTasty to validate improvements.",
+    tags: ["Ruby on Rails", "HAML", "Slim", "A/B Testing", "UI/UX"],
   },
 ];
 
@@ -119,8 +134,11 @@ export default function WorkSection() {
                   width: 11,
                   height: 11,
                   borderRadius: "50%",
-                  background: "var(--green)",
-                  boxShadow: "0 0 10px var(--green-glow)",
+                  background: i === 0 ? "var(--amber)" : "var(--green)",
+                  boxShadow:
+                    i === 0
+                      ? "0 0 10px var(--amber-glow)"
+                      : "0 0 10px var(--green-glow)",
                   border: "2px solid var(--bg)",
                   animation: "glowPulse 2.5s ease-in-out infinite",
                 }}
@@ -132,7 +150,8 @@ export default function WorkSection() {
                   border: "1px solid var(--border)",
                   background: "var(--bg-card)",
                   padding: "1.75rem 2rem",
-                  transition: "border-color 0.3s, box-shadow 0.3s, background 0.3s",
+                  transition:
+                    "border-color 0.3s, box-shadow 0.3s, background 0.3s",
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
@@ -170,12 +189,18 @@ export default function WorkSection() {
                   >
                     <span
                       style={{
-                        color: "var(--amber)",
+                        color: i === 0 ? "var(--amber)" : "var(--green-dim)",
                         fontSize: "0.68rem",
                         letterSpacing: "0.1em",
-                        background: "rgba(255,184,0,0.08)",
+                        background:
+                          i === 0
+                            ? "rgba(255,184,0,0.08)"
+                            : "rgba(0,255,136,0.06)",
                         padding: "0.15rem 0.5rem",
-                        border: "1px solid rgba(255,184,0,0.22)",
+                        border:
+                          i === 0
+                            ? "1px solid rgba(255,184,0,0.22)"
+                            : "1px solid rgba(0,255,136,0.14)",
                         fontWeight: 600,
                       }}
                     >
@@ -190,6 +215,29 @@ export default function WorkSection() {
                     >
                       commit {job.hash}
                     </span>
+                    {i === 0 && (
+                      <span
+                        style={{
+                          color: "var(--amber)",
+                          fontSize: "0.62rem",
+                          letterSpacing: "0.1em",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.3rem",
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: 6,
+                            height: 6,
+                            borderRadius: "50%",
+                            background: "var(--amber)",
+                            animation: "glowPulse 1.8s ease-in-out infinite",
+                          }}
+                        />
+                        current
+                      </span>
+                    )}
                   </div>
                   <span
                     style={{
@@ -208,11 +256,24 @@ export default function WorkSection() {
                     fontSize: "clamp(1.3rem, 2.8vw, 1.75rem)",
                     fontWeight: 700,
                     color: "var(--green)",
-                    marginBottom: "0.45rem",
+                    marginBottom: "0.2rem",
                   }}
                 >
                   {job.role}
                 </h3>
+                {job.subtitle && (
+                  <div
+                    style={{
+                      color: "var(--muted)",
+                      fontSize: "0.72rem",
+                      fontFamily: "var(--font-jetbrains), monospace",
+                      marginBottom: "0.45rem",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    {job.subtitle}
+                  </div>
+                )}
 
                 {/* Company link */}
                 <a
@@ -256,7 +317,9 @@ export default function WorkSection() {
                 </p>
 
                 {/* Tags */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}>
+                <div
+                  style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}
+                >
                   {job.tags.map((tag) => (
                     <span
                       key={tag}

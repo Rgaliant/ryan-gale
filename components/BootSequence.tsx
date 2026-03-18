@@ -19,9 +19,9 @@ const BOOT_LINES = [
   { text: "[ BOOT ] Loading kernel  ...................  OK", type: "ok" },
   { text: "[ BOOT ] Mounting filesystems  .............  OK", type: "ok" },
   { text: "[ BOOT ] Starting network services  ........  OK", type: "ok" },
-  { text: "[ BOOT ] Initializing design-system  .......  OK", type: "ok" },
+  { text: "[ BOOT ] Initializing ruby-on-rails  .......  OK", type: "ok" },
   { text: "[ BOOT ] Loading product-thinking module  ..  OK", type: "ok" },
-  { text: "[ BOOT ] Mounting /dev/creativity  .........  OK", type: "ok" },
+  { text: "[ BOOT ] Starting ai-integrations daemon  ..  OK", type: "ok" },
   { text: "", type: "blank" },
   { text: "> init portfolio.ryan_gale  .................", type: "cmd" },
 ];
