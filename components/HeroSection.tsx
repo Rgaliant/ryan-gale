@@ -1,6 +1,140 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+
+const CODE_LINES = [
+  `const embeddings = await openai.embeddings.create({ model: 'text-embedding-ada-002', input: query });`,
+  `export async function vectorSearch(query: string): Promise<Result[]> {`,
+  `  const vec = await embed(query);`,
+  `  return db.select().from(docs).orderBy(cosineDistance(docs.vec, vec)).limit(10);`,
+  `type RAGContext = { chunks: Chunk[]; score: number; metadata: Record<string, unknown> };`,
+  `async function ingestDocument(file: File, opts: ChunkOptions): Promise<void> {`,
+  `  const chunks = splitText(file.content, { chunkSize: 512, overlap: 64 });`,
+  `  await Promise.all(chunks.map(c => embedAndStore(c)));`,
+  `}`,
+  `class WebhookDispatcher < ApplicationService`,
+  `  def call(event_type, payload)`,
+  `    resource = ResourceFactory.build(event_type, payload)`,
+  `    handlers_for(event_type).each { |handler| handler.call(resource) }`,
+  `  end`,
+  `import { pgvector } from 'pgvector/drizzle-orm';`,
+  `const trpc = createTRPCRouter({ search: searchRouter, assets: assetRouter, webhooks: webhookRouter });`,
+  `scope :active, -> { where(status: :active).includes(:webhooks) }`,
+  `@asset = DamPicker.upload(file, storage: :cloudflare, transforms: [:thumb, :webp])`,
+  `const schema = z.object({ query: z.string(), filters: z.record(z.string()).optional() });`,
+  `router.post('/webhooks/:type', validateSignature, asyncHandler(webhookController.handle));`,
+  `before_action :authenticate_api_key!, only: [:create, :update, :destroy]`,
+  `const { data } = await supabase.rpc('match_documents', { query_embedding: vec, match_count: 5 });`,
+  `has_many :webhook_subscriptions, -> { active }, dependent: :destroy`,
+  `export const ragPipeline = new Pipeline({ retriever, reranker, generator });`,
+  `  return await db.transaction(async (tx) => { await tx.insert(chunks).values(rows); });`,
+];
+
+type Stream = {
+  y: number;
+  x: number;
+  speed: number;
+  opacity: number;
+  text: string;
+  textWidth: number;
+  fontSize: number;
+};
+
+function CodeRain() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let streams: Stream[] = [];
+    let animId: number;
+    let lastTime = 0;
+
+    const buildStreams = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const rowSpacing = 38;
+      const rows = Math.ceil(canvas.height / rowSpacing);
+      streams = [];
+
+      for (let i = 0; i < rows; i++) {
+        const fontSize = i % 3 === 0 ? 11 : 12;
+        const text = CODE_LINES[Math.floor(Math.random() * CODE_LINES.length)];
+        ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+        const textWidth = ctx.measureText(text).width;
+        const speed = 0.4 + Math.random() * 0.7;
+        const opacity = 0.12 + Math.random() * 0.28;
+
+        streams.push({
+          y: rowSpacing * i + rowSpacing,
+          x: -Math.random() * canvas.width,
+          speed,
+          opacity,
+          text,
+          textWidth,
+          fontSize,
+        });
+      }
+    };
+
+    buildStreams();
+    window.addEventListener("resize", buildStreams);
+
+    const draw = (time: number) => {
+      animId = requestAnimationFrame(draw);
+      if (time - lastTime < 30) return;
+      lastTime = time;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const s of streams) {
+        ctx.font = `${s.fontSize}px "JetBrains Mono", monospace`;
+        ctx.globalAlpha = s.opacity;
+        ctx.fillStyle = "#00ff88";
+
+        // Tile the text seamlessly across the width
+        const gap = 120;
+        const tile = s.textWidth + gap;
+        const startX = ((s.x % tile) - tile);
+        for (let x = startX; x < canvas.width; x += tile) {
+          ctx.fillText(s.text, x, s.y);
+        }
+
+        s.x += s.speed;
+      }
+
+      ctx.globalAlpha = 1;
+    };
+
+    animId = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", buildStreams);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        maskImage:
+          "radial-gradient(ellipse 90% 80% at 50% 50%, black 10%, transparent 100%)",
+        pointerEvents: "none",
+      }}
+    />
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -15,21 +149,7 @@ export default function HeroSection() {
         overflow: "hidden",
       }}
     >
-      {/* Grid background */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(var(--green-faint) 1px, transparent 1px),
-            linear-gradient(90deg, var(--green-faint) 1px, transparent 1px)
-          `,
-          backgroundSize: "44px 44px",
-          maskImage:
-            "radial-gradient(ellipse 75% 65% at 50% 50%, black 30%, transparent 100%)",
-        }}
-      />
+      <CodeRain />
 
       {/* Radial glow */}
       <div
@@ -114,14 +234,18 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
           style={{
+            display: "inline-block",
             color: "var(--green-dim)",
             fontSize: "clamp(0.7rem, 1.4vw, 0.85rem)",
             fontFamily: "var(--font-jetbrains), monospace",
             marginBottom: "2.5rem",
+            padding: "0.45rem 1rem",
+            background: "rgba(0,0,0,0.6)",
+            border: "1px solid var(--border)",
           }}
         >
           <span style={{ color: "var(--amber)" }}>~/ryan-gale</span>
-          <span style={{ color: "var(--muted)" }}>
+          <span style={{ color: "var(--green-dim)" }}>
             {" "}
             $ engineer --years 7+ --stack ts+rails --focus ai-native
           </span>
@@ -218,18 +342,22 @@ export default function HeroSection() {
           bottom: "2.5rem",
           left: "50%",
           transform: "translateX(-50%)",
-          color: "var(--muted)",
-          fontSize: "0.65rem",
+          color: "var(--green-dim)",
+          fontSize: "0.72rem",
           letterSpacing: "0.12em",
           textAlign: "center",
           fontFamily: "var(--font-jetbrains), monospace",
+          padding: "0.4rem 0.9rem",
+          background: "rgba(0,0,0,0.6)",
+          border: "1px solid var(--border)",
+          whiteSpace: "nowrap",
         }}
       >
         <div>scroll --down</div>
         <div
           style={{
             marginTop: "0.5rem",
-            fontSize: "1rem",
+            fontSize: "1.2rem",
             animation: "bounceDown 1.6s ease-in-out infinite",
           }}
         >
