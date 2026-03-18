@@ -15,68 +15,24 @@ developer experience.
 6+ years at product-driven startups. I've worn the
 hats: senior engineer, tech lead, and product owner.`;
 
-const SKILLS = [
-  { name: "Ruby on Rails", pid: 1001, cpu: 95, status: "running" },
-  { name: "TypeScript", pid: 1002, cpu: 90, status: "running" },
-  { name: "React / Next.js", pid: 1003, cpu: 88, status: "running" },
-  { name: "REST API Design", pid: 1004, cpu: 92, status: "running" },
-  { name: "AI / Integrations", pid: 1005, cpu: 84, status: "running" },
-  { name: "Product Thinking", pid: 1006, cpu: 91, status: "running" },
-  { name: "PostgreSQL / SQL", pid: 1007, cpu: 78, status: "sleeping" },
-  { name: "Team Leadership", pid: 1008, cpu: 86, status: "running" },
+const SKILL_CATEGORIES = [
+  {
+    label: "BACKEND",
+    skills: ["Ruby on Rails", "Node.js", "REST APIs", "PostgreSQL"],
+  },
+  {
+    label: "FRONTEND",
+    skills: ["React", "Next.js", "TypeScript", "JavaScript"],
+  },
+  {
+    label: "TOOLING",
+    skills: ["AWS", "Git", "Webhooks", "AI / LLMs"],
+  },
+  {
+    label: "PRACTICES",
+    skills: ["Product Discovery", "A/B Testing", "Tech Leadership", "Agile"],
+  },
 ];
-
-function ProcessBar({
-  value,
-  animated,
-}: {
-  value: number;
-  animated: boolean;
-}) {
-  const filled = Math.round(value / 10);
-  const color =
-    value >= 85
-      ? "var(--green)"
-      : value >= 65
-        ? "var(--amber)"
-        : "var(--muted)";
-  const glow =
-    value >= 85
-      ? "0 0 6px var(--green-glow)"
-      : value >= 65
-        ? "0 0 6px var(--amber-glow)"
-        : "none";
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "6px",
-        fontFamily: "var(--font-jetbrains), monospace",
-      }}
-    >
-      <span
-        style={{
-          color,
-          textShadow: animated ? glow : "none",
-          fontSize: "0.72em",
-          letterSpacing: "-0.05em",
-          transition: "text-shadow 0.4s",
-        }}
-      >
-        {animated
-          ? "█".repeat(filled) + "░".repeat(10 - filled)
-          : "░".repeat(10)}
-      </span>
-      <span
-        style={{ color: "var(--muted)", fontSize: "0.65em", minWidth: "28px" }}
-      >
-        {animated ? `${value}%` : ""}
-      </span>
-    </div>
-  );
-}
 
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);
@@ -172,7 +128,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Process list column */}
+        {/* Skills grid column */}
         <div>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -196,30 +152,9 @@ export default function AboutSection() {
                 background: "rgba(0,255,136,0.03)",
               }}
             >
-              <div
-                style={{
-                  width: 9,
-                  height: 9,
-                  borderRadius: "50%",
-                  background: "#ff5f57",
-                }}
-              />
-              <div
-                style={{
-                  width: 9,
-                  height: 9,
-                  borderRadius: "50%",
-                  background: "#febc2e",
-                }}
-              />
-              <div
-                style={{
-                  width: 9,
-                  height: 9,
-                  borderRadius: "50%",
-                  background: "#28c840",
-                }}
-              />
+              <div style={{ width: 9, height: 9, borderRadius: "50%", background: "#ff5f57" }} />
+              <div style={{ width: 9, height: 9, borderRadius: "50%", background: "#febc2e" }} />
+              <div style={{ width: 9, height: 9, borderRadius: "50%", background: "#28c840" }} />
               <span
                 style={{
                   color: "var(--muted)",
@@ -229,66 +164,72 @@ export default function AboutSection() {
                   fontFamily: "var(--font-jetbrains), monospace",
                 }}
               >
-                htop — skills
+                tech-stack.json
               </span>
             </div>
 
-            <div style={{ padding: "1.25rem 1.25rem 1.5rem" }}>
-              {/* Table header */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "44px 1fr 120px",
-                  gap: "0.5rem",
-                  color: "var(--amber)",
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.1em",
-                  marginBottom: "0.6rem",
-                  paddingBottom: "0.6rem",
-                  borderBottom: "1px solid var(--border)",
-                  fontFamily: "var(--font-jetbrains), monospace",
-                }}
-              >
-                <span>PID</span>
-                <span>PROCESS</span>
-                <span>CPU%</span>
-              </div>
-
-              {SKILLS.map((skill, i) => (
+            {/* Categories */}
+            <div style={{ padding: "1.25rem 1.5rem 1.5rem" }}>
+              {SKILL_CATEGORIES.map((category, catIdx) => (
                 <motion.div
-                  key={skill.pid}
+                  key={category.label}
                   initial={{ opacity: 0, x: 12 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.05 + i * 0.07, duration: 0.4 }}
+                  transition={{ delay: 0.08 + catIdx * 0.1, duration: 0.4 }}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "44px 1fr 120px",
-                    gap: "0.5rem",
-                    alignItems: "center",
-                    padding: "0.35rem 0",
+                    gridTemplateColumns: "88px 1fr",
+                    gap: "0.75rem",
+                    alignItems: "start",
+                    paddingBottom: catIdx < SKILL_CATEGORIES.length - 1 ? "1rem" : 0,
+                    marginBottom: catIdx < SKILL_CATEGORIES.length - 1 ? "1rem" : 0,
                     borderBottom:
-                      i < SKILLS.length - 1
-                        ? "1px solid rgba(0,255,136,0.05)"
+                      catIdx < SKILL_CATEGORIES.length - 1
+                        ? "1px solid rgba(0,255,136,0.06)"
                         : "none",
-                    fontSize: "clamp(0.62rem, 1.1vw, 0.72rem)",
                     fontFamily: "var(--font-jetbrains), monospace",
                   }}
                 >
-                  <span style={{ color: "var(--muted)", opacity: 0.7 }}>
-                    {skill.pid}
-                  </span>
+                  {/* Category label */}
                   <span
                     style={{
-                      color:
-                        skill.status === "running"
-                          ? "var(--green-dim)"
-                          : "var(--muted)",
+                      color: "var(--amber)",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.12em",
+                      fontWeight: 600,
+                      paddingTop: "0.1rem",
                     }}
                   >
-                    {skill.name}
+                    {category.label}
                   </span>
-                  <ProcessBar value={skill.cpu} animated={isInView} />
+
+                  {/* Skill tags */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                    {category.skills.map((skill, skillIdx) => (
+                      <motion.span
+                        key={skill}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          delay: 0.15 + catIdx * 0.1 + skillIdx * 0.05,
+                          duration: 0.3,
+                        }}
+                        style={{
+                          color: "var(--green-dim)",
+                          fontSize: "0.7rem",
+                          letterSpacing: "0.04em",
+                          border: "1px solid var(--border)",
+                          padding: "0.2rem 0.55rem",
+                          background: "var(--green-faint)",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -303,7 +244,7 @@ export default function AboutSection() {
               fontFamily: "var(--font-jetbrains), monospace",
             }}
           >
-            ps aux | grep skills
+            cat tech-stack.json | jq .skills
           </div>
         </div>
       </div>
