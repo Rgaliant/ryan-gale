@@ -7,9 +7,9 @@ I understand the full stack — from database schemas
 to customer journeys — and use that context to ship
 faster and make smarter decisions.
 
-Currently Team Lead at Fluid, building infrastructure
-tools at the intersection of AI, integrations, and
-developer experience.
+Most recently Team Lead at Fluid, building tools at
+the intersection of AI, integrations, and developer
+experience. Now seeking my next challenge.
 
 6+ years at product-driven startups. I've worn the
 hats: senior engineer, tech lead, and product owner.`;
