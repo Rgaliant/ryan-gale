@@ -5,16 +5,20 @@ import { motion, useInView } from "framer-motion";
 
 const LINKS = [
   {
+    label: "email",
+    handle: "ryan@ryangale.com",
+    url: "mailto:ryan@ryangale.com",
+    prefix: "",
+  },
+  {
     label: "github",
     handle: "rgaliant",
-    display: "github.com/rgaliant",
     url: "https://github.com/rgaliant",
     prefix: "github.com/",
   },
   {
     label: "linkedin",
     handle: "ryan-wendell-gale",
-    display: "linkedin.com/in/ryan-wendell-gale",
     url: "https://linkedin.com/in/ryan-wendell-gale",
     prefix: "linkedin.com/in/",
   },
@@ -344,7 +348,7 @@ export default function ContactSection() {
         }}
       >
         <span>
-          ryanwfgale@gmail.com · Salt Lake City, UT · github.com/rgaliant
+          ryan@ryangale.com · Salt Lake City, UT · github.com/rgaliant
         </span>
         <span style={{ opacity: 0.6 }}>© {new Date().getFullYear()} Ryan Gale</span>
       </motion.div>
