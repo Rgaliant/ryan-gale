@@ -124,6 +124,7 @@ export default function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.55, delay: i * 0.14 }}
+            style={{ display: "flex", flexDirection: "column", height: "100%" }}
           >
             {/* ls -la line */}
             <div
@@ -132,18 +133,17 @@ export default function ProjectsSection() {
                 fontSize: "0.62rem",
                 color: "var(--muted)",
                 marginBottom: "0.5rem",
-                display: "flex",
-                gap: "0.75rem",
-                flexWrap: "wrap",
-                alignItems: "center",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               <span>{project.permissions}</span>
-              <span>ryan</span>
-              <span>staff</span>
-              <span>{project.size}</span>
-              <span>{project.date}</span>
-              <span style={{ color: "var(--amber)" }}>{project.filename}</span>
+              <span style={{ marginLeft: "0.75rem" }}>ryan</span>
+              <span style={{ marginLeft: "0.75rem" }}>staff</span>
+              <span style={{ marginLeft: "0.75rem" }}>{project.size}</span>
+              <span style={{ marginLeft: "0.75rem" }}>{project.date}</span>
+              <span style={{ marginLeft: "0.75rem", color: "var(--amber)" }}>{project.filename}</span>
             </div>
 
             {/* Card */}
@@ -154,7 +154,7 @@ export default function ProjectsSection() {
                 padding: "1.75rem",
                 transition:
                   "border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s",
-                height: "calc(100% - 1.6rem)",
+                flex: 1,
                 display: "flex",
                 flexDirection: "column",
               }}
