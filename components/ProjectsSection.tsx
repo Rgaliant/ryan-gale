@@ -4,6 +4,19 @@ import { motion } from "framer-motion";
 
 const PROJECTS = [
   {
+    id: "deckbuilder-rag",
+    name: "MTG Deck Builder (RAG)",
+    filename: "deckbuilder-rag/",
+    permissions: "-rwxr-xr-x",
+    size: "8.1M",
+    date: "Mar 2026",
+    url: "https://tribal-radar-490716-k5-6707e.web.app/",
+    description:
+      "Production AI app that builds Magic: The Gathering Commander decks through natural language conversation. Uses RAG with pgvector + Claude to retrieve semantically relevant cards and return a validated, explained 99-card deck.",
+    tags: ["Rails 8", "React", "TypeScript", "PostgreSQL", "pgvector", "Claude AI", "RAG"],
+    status: "active",
+  },
+  {
     id: "opendeck",
     name: "OpenDeck TCG",
     filename: "opendecktcg/",
