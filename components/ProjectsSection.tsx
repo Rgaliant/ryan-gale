@@ -12,8 +12,8 @@ const PROJECTS = [
     date: "Mar 2026",
     url: "https://tribal-radar-490716-k5-6707e.web.app/",
     description:
-      "Production AI app that builds Magic: The Gathering Commander decks through natural language conversation. Uses RAG with pgvector + Claude to retrieve semantically relevant cards and return a validated, explained 99-card deck.",
-    tags: ["Rails 8", "React", "TypeScript", "PostgreSQL", "pgvector", "Claude AI", "RAG"],
+      "Production AI app that builds MTG Commander decks through natural language conversation. Rails 8 API deployed on Cloud Run with a Dockerized pipeline — RAG via pgvector + Claude handles intent parsing, card retrieval, deck validation, and strategy narration. Async jobs via Solid Queue, metrics logged to PostgreSQL, frontend on Firebase Hosting.",
+    tags: ["Rails 8", "React", "TypeScript", "GCP", "Cloud Run", "Docker", "Firebase", "PostgreSQL", "pgvector", "Claude AI", "RAG", "Solid Queue"],
     status: "active",
   },
   {
