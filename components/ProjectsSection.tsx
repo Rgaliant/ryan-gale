@@ -4,6 +4,19 @@ import { motion } from "framer-motion";
 
 const PROJECTS = [
   {
+    id: "bookandunlock",
+    name: "Book & Unlock",
+    filename: "bookandunlock/",
+    permissions: "-rwxr-xr-x",
+    size: "2.3M",
+    date: "Apr 2026",
+    url: "https://bookandunlock.com",
+    description:
+      "SaaS platform that bridges Acuity Scheduling with TTLock/Sifely smart locks — bookings automatically grant and revoke keyless entry. Next.js 15 app with Clerk auth, Stripe billing, Neon Postgres, and Twilio SMS notifications. Zero-friction access control for rental spaces and studios.",
+    tags: ["Next.js", "TypeScript", "Clerk", "Stripe", "Neon", "Twilio", "Tailwind", "SaaS"],
+    status: "active",
+  },
+  {
     id: "deckbuilder-rag",
     name: "MTG Deck Builder (RAG)",
     filename: "deckbuilder-rag/",
