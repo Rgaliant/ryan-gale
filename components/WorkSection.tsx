@@ -4,6 +4,19 @@ import { motion } from "framer-motion";
 
 const WORK = [
   {
+    id: "vasion",
+    label: "VASION",
+    company: "Vasion",
+    url: "https://vasion.com",
+    role: "Senior AI Engineer",
+    subtitle: "",
+    period: "May 2026 — Present",
+    hash: "f2a8d3e",
+    description:
+      "Building agentic workflows and AI agents on AWS Bedrock AgentCore to digitally transform legacy document operations — replacing paper-based processes with intelligent, automated digital pipelines. Engineering across the full stack in Python, Go, and Vue to deliver production-grade AI automation at enterprise scale.",
+    tags: ["Python", "Go", "Vue", "AWS Bedrock", "AgentCore", "Agentic AI", "Document AI"],
+  },
+  {
     id: "fluid",
     label: "FLUID",
     company: "Fluid",
